@@ -1,0 +1,15 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: my-db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234567890-=
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+volumes:
+  postgres_data:
