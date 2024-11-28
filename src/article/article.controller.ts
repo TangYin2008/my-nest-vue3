@@ -9,9 +9,8 @@ export class ArticleController {
         this.ArticleService = ArticleService;
     }
     @Get('/list')
-        getArticleList(@Res() res, @Query('title') title: string) {
-            // const resp = this.prisma.users.findMany({})
-            const data = this.ArticleService.getArticleList(title);
-            res.send(data);
+        async getCategoryTree() {
+            const data = await this.ArticleService.getCategoryTree();
+            return data
         }
 }

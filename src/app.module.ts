@@ -48,13 +48,6 @@ function createDailyRotateTransport(level: string, filename: string) {
           createDailyRotateTransport('warn', 'error'),
           createDailyRotateTransport('info', 'app')
         ])
-        // new winston.transports.File({filename: 'error.log', level: 'error',format: winston.format.combine(
-        //   winston.format.timestamp(),
-        //   winston.format.ms(),
-        //   nestWinstonModuleUtilities.format.nestLike('MyApp', {
-        //     prettyPrint: true,
-        //   }),
-        // )})
       ],
       // other options
     }),
