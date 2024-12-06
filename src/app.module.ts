@@ -1,9 +1,10 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ArticleModule } from './article/article.module';
 import { utilities as nestWinstonModuleUtilities, WinstonModule } from 'nest-winston';
 import * as winston from 'winston';
 import  'winston-daily-rotate-file';
 import { DailyRotateFile } from 'winston/lib/winston/transports';
+import { CorsMiddleware } from './cors.middleware';
 
 const isDebug = process.env.NODE_ENV === 'development';
 
@@ -55,4 +56,8 @@ function createDailyRotateTransport(level: string, filename: string) {
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(CorsMiddleware).forRoutes('*'); // 对所有路由应用跨域中间件
+  }
+}

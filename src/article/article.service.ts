@@ -5,7 +5,6 @@ import { Injectable } from '@nestjs/common';
 export class ArticleService {
   constructor(private prisma: PrismaService) {}
   async getCategoryTree(): Promise<any> {
-    // 获取所有顶级类别（没有父类别的类别）
     const topCategories = await this.prisma.articles.findMany({
       include: {
         // subCategories：子集的children名称

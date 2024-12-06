@@ -1,15 +1,18 @@
-version: '3'
-services:
-  postgres:
-    image: postgres:13
-    environment:
-      POSTGRES_DB: my-db
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: 1234567890-=
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    ports:
-      - '5432:5432'
+# Copyright (c) 2024 tong<admin>
+# 
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
 
-volumes:
-  postgres_data:
+version: '3'
+
+services:
+  integrated-documents-projects-nest:
+    container_name: 'integrated-documents-projects-nest'
+    image: 'integrated-documents-projects-nest:1.0'
+    restart: 'always'
+    ports:
+      - '3000:3000'
+    env_file:
+      - .env
+    volumes:
+      - ./logs:/home/node/app/logs
